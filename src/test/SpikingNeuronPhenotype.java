@@ -15,6 +15,8 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		super(genotype);
 		tau = 10;
 		I = 10;
+		
+		createNeuronValues();
 	}
 
 	public void createNeuronValues() {
@@ -56,12 +58,22 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	public void createSpikeTrain(int numberOfIteations) {
 		spikeTrain = new ArrayList<Double>();
 		for (int i = 0; i < numberOfIteations; i++) {
+		
 			spikeTrain.add(v);
+			checkThreshold();
 			v = (1/tau)*(k*Math.pow(v, 2)+5*v+140-u+I);
 			u = (a/tau)*(b*v-u);
+		
 		}
+		
 	}
 
+	public void checkThreshold(){
+		if(v >= 35){
+			v = c;
+			u = u + d;
+		}
+	}
 	@Override
 	public void calculateFitnessEvaluation() {
 
