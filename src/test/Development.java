@@ -27,8 +27,10 @@ public class Development {
 				phenotype = new OneMaxPhenotype(genotype);
 			}else if(problemId ==1){
 				phenotype = new OneMaxAdvencedPhenotype(genotype);
-			}else{
+			}else if(problemId == 2){
 				phenotype = new ColonelBlottoPhenotype(genotype);
+			}else{
+				phenotype = new SpikingNeuronPhenotype(genotype);
 			}
 			childrenPopulation.addChild(phenotype);
 		}
@@ -54,6 +56,14 @@ public class Development {
 			childrenPopulation.addChild(phenotype);		
 		}
 	}
+	
+	public void developSpikingNeuron(ArrayList<Genotype> parentGenotypes){
+		for (int i = 0; i < generationPool; i++) {			
+			SpikingNeuronPhenotype phenotype = new SpikingNeuronPhenotype(parentGenotypes.get(i));
+			childrenPopulation.addChild(phenotype);		
+		}
+	}
+	
 	
 	public void develop(ArrayList<Genotype> parentGenotypes){
 		if(problemId == 0){

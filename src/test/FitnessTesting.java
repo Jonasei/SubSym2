@@ -24,5 +24,8 @@ public class FitnessTesting {
 				generalOne.calculateFitnessEvaluation();
 			}
 		}
+		else if(problemId == 3){
+			
+		}
 	}
 }
