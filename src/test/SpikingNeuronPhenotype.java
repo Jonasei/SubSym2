@@ -17,6 +17,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		I = 10;
 		
 		createNeuronValues();
+		System.out.println(this);
 	}
 
 	public void createNeuronValues() {
@@ -89,4 +90,10 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		return 0;
 	}
 
+	
+	public String toString(){
+		String output = "";
+		output += "a: " + a + ", b: " + b + ", c: " + c + ", d: " + d + ", k: " + k;
+		return output;
+	}
 }
