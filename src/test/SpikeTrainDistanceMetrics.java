@@ -84,9 +84,24 @@ public class SpikeTrainDistanceMetrics {
 	}
 	
 	
-	public double spikeTimeDistanceMetrics(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
+	public double spikeTimeDistanceMetrics(){
+		double fitnessValue = 0;
+		int minimumSpikes = 0;
+		int p = 2;
+		if (phenotypeSpikePositions.size()<targetSpikePositions.size()){
+			minimumSpikes = phenotypeSpikePositions.size();
+		}else{
+			minimumSpikes = targetSpikePositions.size();
+		}
 		
-		return 0;
+		for (int i = 0; i < minimumSpikes; i++) {
+			double temp = Math.abs(phenotypeSpikePositions.get(i)-targetSpikePositions.get(i));
+			fitnessValue += Math.pow(temp, 2);
+		}
+		fitnessValue = Math.pow(fitnessValue, 1/p);
+		fitnessValue = (1/minimumSpikes)*fitnessValue;
+		
+		return fitnessValue;
 	}
 	
 	public double spikeIntervalDistanceMetrics(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
