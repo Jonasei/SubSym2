@@ -12,6 +12,7 @@ public class SpikeTrainDistanceMetrics {
 	private ArrayList<Integer> phenotypeSpikePositions;
 	private ArrayList<Integer> targetSpikePositions;
 	private ArrayList<Double> trainingSpikeTrain;
+	private ArrayList<Double> phenotypeSpikeTrain;
 	
 	public SpikeTrainDistanceMetrics(){
 		activationThreshold = 0;
@@ -24,7 +25,7 @@ public class SpikeTrainDistanceMetrics {
 	public void findPhenotypeSpikePosition(ArrayList<Double> phenotypeSpikeTrain){
 		phenotypeSpikePositions = new ArrayList<Integer>();
 		phenotypeSpikePositions = findSpikePositions(phenotypeSpikePositions,phenotypeSpikeTrain);
-		
+		this.phenotypeSpikeTrain = phenotypeSpikeTrain;
 	}
 	
 	private void readTrainingData(int trainingDataSet){
@@ -71,7 +72,7 @@ public class SpikeTrainDistanceMetrics {
 			}
 			
 			// check if the middle value is maximum and above threshold
-			int middleIndex = (int) (kTimeStep/2+1);
+			int middleIndex = (int) (kTimeStep/2);
 			if (index == middleIndex && maxValue > activationThreshold){
 				newList.add(i+middleIndex);
 			}
@@ -109,10 +110,17 @@ public class SpikeTrainDistanceMetrics {
 	
 	public String toString(){
 		String newString ="";
-		newString +="spikeTrainPositions\n";
+		
+		newString +="spikeTrain\n";
+		for (int i = 0; i < phenotypeSpikeTrain.size(); i++) {
+			newString += phenotypeSpikeTrain.get(i)+", ";
+		}
+		
+		newString +="\n\nspikeTrainPositions\n";
 		for (int i = 0; i < phenotypeSpikePositions.size(); i++) {
 			newString += phenotypeSpikePositions.get(i)+", ";
 		}
+		newString +="\n\n";
 		
 		return newString;
 	}

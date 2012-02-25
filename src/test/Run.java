@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Run {
 
-	private int generationPool = 2;
+	private int generationPool = 1;
 	private int adultPool = 4;
 	private int bitSize = 50;
 	private int adultProtocol = 3;
