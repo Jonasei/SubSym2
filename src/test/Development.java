@@ -78,8 +78,10 @@ public class Development {
 			developOneMax(parentGenotypes);
 		}else if(problemId ==1){
 			developOneMaxAdvanced(parentGenotypes);
-		}else{
+		}else if(problemId ==2){
 			developColonelBlotto(parentGenotypes);
+		}else{
+			developSpikingNeuron(parentGenotypes);
 		}
 	}
 }

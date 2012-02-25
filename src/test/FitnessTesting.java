@@ -4,10 +4,13 @@ public class FitnessTesting {
 
 	private PopulationChildren childrenPopulation;
 	private int problemId;
+	private SpikeTrainDistanceMetrics spikeTrainDistanceMetrics;
+
 	
 	public FitnessTesting(PopulationChildren childrenPopulation,int problemId){
 		this.childrenPopulation = childrenPopulation;
 		this.problemId = problemId;
+		spikeTrainDistanceMetrics = new SpikeTrainDistanceMetrics();
 	}
 	
 	public void evaluateFitness(){	
@@ -49,7 +52,10 @@ public class FitnessTesting {
 	
 	public void spikingNeuronTrainFitnessEval(){
 		for (int i = 0; i < childrenPopulation.getPopulationSize(); i++) {
-			childrenPopulation.getPhenotypeAt(i).calculateFitnessEvaluation();
+			SpikingNeuronPhenotype neuron = (SpikingNeuronPhenotype) childrenPopulation.getPhenotypeAt(i);
+			spikeTrainDistanceMetrics.findPhenotypeSpikePosition(neuron.getSpikeTrain());
+			System.out.println(spikeTrainDistanceMetrics);
+			neuron.setFitness(spikeTrainDistanceMetrics.getFintesss());
 		}
 	}
 }

@@ -10,7 +10,6 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	private double I;
 
 	private ArrayList<Double> spikeTrain;
-	private SpikeTrainDistanceMetrics spikeTrainDistanceMetrics;
 
 	public SpikingNeuronPhenotype(Genotype genotype) {
 		super(genotype);
@@ -20,6 +19,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		v = -60;
 		
 		createNeuronValues();
+		createSpikeTrain(1000);
 	}
 
 	public void createNeuronValues() {
@@ -92,8 +92,15 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	}
 	@Override
 	public void calculateFitnessEvaluation() {
-		spikeTrainDistanceMetrics = new SpikeTrainDistanceMetrics(spikeTrain);
 		
+	}
+	
+	public ArrayList<Double> getSpikeTrain(){
+		return spikeTrain;
+	}
+	
+	public void setFitness(double fintessValue){
+		fitnessScore = fintessValue;
 	}
 
 	@Override

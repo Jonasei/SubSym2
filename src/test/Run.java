@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Run {
 
-	private int generationPool = 101;
-	private int adultPool = 31;
+	private int generationPool = 2;
+	private int adultPool = 4;
 	private int bitSize = 50;
 	private int adultProtocol = 3;
 	private int parentProtocol = 2;
@@ -21,8 +21,7 @@ public class Run {
 	public void init() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome");
-		System.out
-				.println("Enter problem id\nOneMax = 0\nAdvencedOneMax = 1\nColonelBlotto = 2");
+		System.out.println("Enter problem id\nOneMax = 0\nAdvencedOneMax = 1\nColonelBlotto = 2");
 		problemId = sc.nextInt();
 		if (problemId == 2) {
 			System.out.println("Enter bitSize, have to be dividable by 4:");
@@ -38,17 +37,14 @@ public class Run {
 		System.out.println("Enter childern size, have to be dividable by 2:");
 		generationPool = sc.nextInt();
 		while (generationPool % 2 != 0) {
-			System.out
-					.println("Enter childern size, have to be dividable by 2:");
+			System.out.println("Enter childern size, have to be dividable by 2:");
 			generationPool = sc.nextInt();
 		}
 		System.out.println("Enter adult size:");
 		adultPool = sc.nextInt();
-		System.out
-				.println("Enter adult protocol\nRandom = 0\nOver production = 1\nFull generational replacement = 2\nGenerational mixing = 3");
+		System.out.println("Enter adult protocol\nRandom = 0\nOver production = 1\nFull generational replacement = 2\nGenerational mixing = 3");
 		adultProtocol = sc.nextInt();
-		System.out
-				.println("Enter parent protocol\nRandom = 0\nFitness proportionate = 1\nSigma-scaling = 2\nTournament selection = 3\nStochastic uniform selection = 4");
+		System.out.println("Enter parent protocol\nRandom = 0\nFitness proportionate = 1\nSigma-scaling = 2\nTournament selection = 3\nStochastic uniform selection = 4");
 		parentProtocol = sc.nextInt();
 		System.out.println("Enter mutate rate, eks 0,01:");
 		mutateRate = sc.nextDouble();
@@ -61,14 +57,12 @@ public class Run {
 		PopulationAdults populationAdults = new PopulationAdults(adultPool);
 		PopulationParent populationParent = new PopulationParent(generationPool);
 		// Declare helper classes
-		Development development = new Development(populationChildren,
-				generationPool, bitSize, mutateRate, problemId);
-		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren,
-				problemId);
+		Development development = new Development(populationChildren, generationPool, bitSize, mutateRate, problemId);
+		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId);
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
-		while (!finished && i < 500) {
+		while (!finished && i < 2) {
 			i++;
 			System.out.println("\nGeneration: " + i);
 			if (i == 1) {

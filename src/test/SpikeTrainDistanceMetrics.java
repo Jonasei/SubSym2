@@ -1,5 +1,7 @@
 package test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,37 +11,53 @@ public class SpikeTrainDistanceMetrics {
 	private double kTimeStep;
 	private ArrayList<Integer> phenotypeSpikePositions;
 	private ArrayList<Integer> targetSpikePositions;
-	private ArrayList<Double> phenotypeSpikeTrain;
 	private ArrayList<Double> trainingSpikeTrain;
 	
-	public SpikeTrainDistanceMetrics(ArrayList<Double> phenotypeSpikeTrain){
+	public SpikeTrainDistanceMetrics(){
 		activationThreshold = 0;
 		kTimeStep = 5;
-		this.phenotypeSpikeTrain = phenotypeSpikeTrain;
 		
-		findPhenotypeSpikePosition();
+		readTrainingData(1);
 		findTargetSpikePosition();
 	}
 	
-	public void findPhenotypeSpikePosition(){
+	public void findPhenotypeSpikePosition(ArrayList<Double> phenotypeSpikeTrain){
 		phenotypeSpikePositions = new ArrayList<Integer>();
 		phenotypeSpikePositions = findSpikePositions(phenotypeSpikePositions,phenotypeSpikeTrain);
 		
 	}
 	
 	private void readTrainingData(int trainingDataSet){
-		Scanner sc;
+		trainingSpikeTrain = new ArrayList<Double>();
+		Scanner sc = new Scanner("");
+		try {
+			if (trainingDataSet == 1) {	
+				sc = new Scanner(new File("src/trainingData/izzy-train1.dat"));
+			}else if (trainingDataSet == 2) {
+				sc = new Scanner(new File("src/trainingData/izzy-train2.dat"));
+			}else if (trainingDataSet == 3) {
+				sc = new Scanner(new File("src/trainingData/izzy-train3.dat"));
+			}else if (trainingDataSet == 4) {
+				sc = new Scanner(new File("src/trainingData/izzy-train4.dat"));
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while (sc.hasNext()) {
+			trainingSpikeTrain.add(sc.nextDouble());
+		}
 		
 	}
 	
 	public void findTargetSpikePosition(){
 		targetSpikePositions = new ArrayList<Integer>();
-		
+		targetSpikePositions = findSpikePositions(targetSpikePositions,trainingSpikeTrain);
 	}
 	
 	private ArrayList<Integer> findSpikePositions(ArrayList<Integer> newList, ArrayList<Double> phenotypeSpikeTrain){
-		
-		for (int i = 0; i < phenotypeSpikeTrain.size()-kTimeStep/2; i++) {
+		int trainLength = (int) (phenotypeSpikeTrain.size()-kTimeStep+1);
+		for (int i = 0; i < trainLength; i++) {
 			double maxValue = activationThreshold -1;
 			double index = -1;
 			for (int j = 0; j < kTimeStep; j++) {
@@ -54,7 +72,6 @@ public class SpikeTrainDistanceMetrics {
 			
 			// check if the middle value is maximum and above threshold
 			int middleIndex = (int) (kTimeStep/2+1);
-			System.out.println(middleIndex);
 			if (index == middleIndex && maxValue > activationThreshold){
 				newList.add(i+middleIndex);
 			}
@@ -84,5 +101,19 @@ public class SpikeTrainDistanceMetrics {
 	public double spikeCountDifferancePenalty(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
 		
 		return 0;
+	}
+	
+	public double getFintesss(){
+		return 0;
+	}
+	
+	public String toString(){
+		String newString ="";
+		newString +="spikeTrainPositions\n";
+		for (int i = 0; i < phenotypeSpikePositions.size(); i++) {
+			newString += phenotypeSpikePositions.get(i)+", ";
+		}
+		
+		return newString;
 	}
 }
