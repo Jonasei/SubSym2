@@ -16,50 +16,63 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		super(genotype);
 		tau = 10;
 		I = 10;
+		u = 0;
+		v = -60;
 		
 		createNeuronValues();
-		System.out.println(this);
 	}
 
 	public void createNeuronValues() {
-		u = 0;
-		v = -60;
 
 		for (int i = 0; i < phenotype.length; i += 10) {
-			double temp = 0;
-			temp += phenotype[i]* 512;
-			temp += phenotype[i+1]* 256;
-			temp += phenotype[i+2]* 128;
-			temp += phenotype[i+3]* 64;
-			temp += phenotype[i+4]* 32;
-			temp += phenotype[i+5]* 16;
-			temp += phenotype[i+6]* 8;
-			temp += phenotype[i+7]* 4;
-			temp += phenotype[i+8]* 2;
-			temp += phenotype[i+9];
+			double value = 0;
+			
+			value= convertBinaryToDecimal(i);
 			
 			if(i <10){
-				a = 0.001 + (temp / 1023 )* (0.2 - 0.001);
+				a = calculateParameter(0.001, 0.2, value);
 			}
 			else if(i <20){
-				b = 0.01 + (temp /1023) * (0.3 - 0.01);
+				b = calculateParameter(0.01, 0.3, value);
 			}
 			else if(i <30){
-				c = -80 + (temp / 1023) * (-30 + 80);
+				c = calculateParameter(-80, -30, value);
 			}
 			else if(i <40){
-				d = 0.1 + (temp / 1023) * (10 - 0.1);
+				d = calculateParameter(0.1, 10, value);
 			}
 			else{
-				k = 0.01 + (temp / 1023) * (1.0 - 0.01);
+				k = calculateParameter(0.01, 1.0, value);
 			}
 				
 		}
 	}
+	
+	public double calculateParameter(double lowerBound, double higherBound, double value){
+		double parameter = 0;
+		int maxValue = 1023;
+		parameter = lowerBound + (value / maxValue) * (higherBound - lowerBound);
+		return parameter;
+	}
+	
+	public double convertBinaryToDecimal(int i){
+		double decimalValue = 0;
+		decimalValue += phenotype[i]* 512;
+		decimalValue += phenotype[i+1]* 256;
+		decimalValue += phenotype[i+2]* 128;
+		decimalValue += phenotype[i+3]* 64;
+		decimalValue += phenotype[i+4]* 32;
+		decimalValue += phenotype[i+5]* 16;
+		decimalValue += phenotype[i+6]* 8;
+		decimalValue += phenotype[i+7]* 4;
+		decimalValue += phenotype[i+8]* 2;
+		decimalValue += phenotype[i+9];
+		return decimalValue;
+	}
 
-	public void createSpikeTrain(int numberOfIteations) {
+	public void createSpikeTrain(int numberOfIterations) {
 		spikeTrain = new ArrayList<Double>();
-		for (int i = 0; i < numberOfIteations; i++) {
+		for (int i = 0; i < numberOfIterations; i++) {
 		
 			spikeTrain.add(v);
 			checkThreshold();

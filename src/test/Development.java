@@ -23,14 +23,22 @@ public class Development {
 		for (int j = 0; j < generationPool; j++) {
 			Genotype genotype = new Genotype(bitSize,mutateRate);
 			BasicPhenotype phenotype = null;
-			if(problemId == 0){				
+			
+			switch (problemId) {
+			case 0:
 				phenotype = new OneMaxPhenotype(genotype);
-			}else if(problemId ==1){
+				break;
+			case 1:
 				phenotype = new OneMaxAdvencedPhenotype(genotype);
-			}else if(problemId == 2){
+				break;
+			case 2:
 				phenotype = new ColonelBlottoPhenotype(genotype);
-			}else{
+				break;
+			case 3:
 				phenotype = new SpikingNeuronPhenotype(genotype);
+				break;
+			default:
+				break;
 			}
 			childrenPopulation.addChild(phenotype);
 		}
