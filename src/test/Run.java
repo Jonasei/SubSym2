@@ -11,7 +11,7 @@ public class Run {
 	private int parentProtocol = 2;
 	private int problemId = 3;
 	private int fitnessEvaluationMethod = 1;
-	private double mutateRate = 0.05;
+	private double mutateRate = 0.1;
 	static boolean finished = false;
 	static double BESOVERALLFITNESS = 0;
 

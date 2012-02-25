@@ -119,7 +119,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		for (int i = 0; i < spikeTrain.size(); i++) {
 			output += spikeTrain.get(i) + ", ";
 		}
-		output += a + ", " + b + ", " + c + ", " + d + ", " + k;
+		output += "\n"+ a + ", " + b + ", " + c + ", " + d + ", " + k;
 		return output;
 	}
 }
