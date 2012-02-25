@@ -96,7 +96,6 @@ public class SpikeTrainDistanceMetrics {
 		distanceValue = Math.pow(distanceValue, 1/p);
 		distanceValue += spikeCountDifferancePenalty();
 		distanceValue = (1/minimumSpikes)*distanceValue;
-		
 		return distanceValue;
 	}
 	
@@ -146,7 +145,6 @@ public class SpikeTrainDistanceMetrics {
 			spikeDifferense = phenotypeSpikePositions.size()- targetSpikePositions.size();
 			minimumSpikes = targetSpikePositions.size();
 		}
-		
 		penelty = (spikeDifferense*phenotypeSpikeTrain.size())/(2*minimumSpikes);
 		
 		return penelty;
