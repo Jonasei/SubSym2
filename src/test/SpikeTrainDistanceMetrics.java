@@ -94,7 +94,7 @@ public class SpikeTrainDistanceMetrics {
 		return 0;
 	}
 	
-	public double waveFormDistanceMetrics(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
+	public double waveFormDistanceMetrics(){
 		
 		return 0;
 	}
