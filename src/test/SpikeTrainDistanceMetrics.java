@@ -163,7 +163,6 @@ public class SpikeTrainDistanceMetrics {
 		}
 		
 		fitness = 1/(fitness+1);
-		System.out.println(fitness);
 		return fitness;
 	}
 	
