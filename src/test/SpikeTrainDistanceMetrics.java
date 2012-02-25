@@ -85,23 +85,19 @@ public class SpikeTrainDistanceMetrics {
 	
 	
 	public double spikeTimeDistanceMetrics(){
-		double fitnessValue = 0;
-		int minimumSpikes = 0;
 		int p = 2;
-		if (phenotypeSpikePositions.size()<targetSpikePositions.size()){
-			minimumSpikes = phenotypeSpikePositions.size();
-		}else{
-			minimumSpikes = targetSpikePositions.size();
-		}
+		double distanceValue = 0;
+		double minimumSpikes = Math.min(phenotypeSpikePositions.size(), targetSpikePositions.size());
 		
 		for (int i = 0; i < minimumSpikes; i++) {
 			double temp = Math.abs(phenotypeSpikePositions.get(i)-targetSpikePositions.get(i));
-			fitnessValue += Math.pow(temp, 2);
+			distanceValue += Math.pow(temp, 2);
 		}
-		fitnessValue = Math.pow(fitnessValue, 1/p);
-		fitnessValue = (1/minimumSpikes)*fitnessValue;
+		distanceValue = Math.pow(distanceValue, 1/p);
+		distanceValue += spikeCountDifferancePenalty();
+		distanceValue = (1/minimumSpikes)*distanceValue;
 		
-		return fitnessValue;
+		return distanceValue;
 	}
 	
 	public double spikeIntervalDistanceMetrics(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
@@ -139,9 +135,21 @@ public class SpikeTrainDistanceMetrics {
 		return fitnessValue;
 	}
 	
-	public double spikeCountDifferancePenalty(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
+	public double spikeCountDifferancePenalty(){
+		double penelty = 0;
+		double spikeDifferense = 0;
+		double minimumSpikes = 0;
+		if (phenotypeSpikePositions.size()<targetSpikePositions.size()){
+			spikeDifferense = targetSpikePositions.size() - phenotypeSpikePositions.size();
+			minimumSpikes = phenotypeSpikePositions.size();
+		}else{
+			spikeDifferense = phenotypeSpikePositions.size()- targetSpikePositions.size();
+			minimumSpikes = targetSpikePositions.size();
+		}
 		
-		return 0;
+		penelty = (spikeDifferense*phenotypeSpikeTrain.size())/(2*minimumSpikes);
+		
+		return penelty;
 	}
 	
 	public double getFintesss(){
