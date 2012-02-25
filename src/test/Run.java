@@ -10,6 +10,7 @@ public class Run {
 	private int adultProtocol = 3;
 	private int parentProtocol = 2;
 	private int problemId = 3;
+	private int fitnessEvaluationMethod = 1;
 	private double mutateRate = 0.01;
 	static boolean finished = false;
 
@@ -58,7 +59,7 @@ public class Run {
 		PopulationParent populationParent = new PopulationParent(generationPool);
 		// Declare helper classes
 		Development development = new Development(populationChildren, generationPool, bitSize, mutateRate, problemId);
-		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId);
+		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId,fitnessEvaluationMethod);
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
