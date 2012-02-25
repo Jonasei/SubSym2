@@ -25,7 +25,9 @@ public class FitnessTesting {
 			}
 		}
 		else if(problemId == 3){
-			
+			for (int i = 0; i < childrenPopulation.getPopulationSize(); i++) {
+				childrenPopulation.getPhenotypeAt(i).calculateFitnessEvaluation();
+			}
 		}
 	}
 }

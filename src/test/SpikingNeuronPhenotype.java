@@ -10,6 +10,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	private double I;
 
 	private ArrayList<Double> spikeTrain;
+	private SpikeTrainDistanceMetrics spikeTrainDistanceMetrics;
 
 	public SpikingNeuronPhenotype(Genotype genotype) {
 		super(genotype);
@@ -68,6 +69,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		}
 		
 	}
+	
 
 	public void checkThreshold(){
 		if(v >= 35){
@@ -77,7 +79,8 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	}
 	@Override
 	public void calculateFitnessEvaluation() {
-
+		spikeTrainDistanceMetrics = new SpikeTrainDistanceMetrics(spikeTrain);
+		
 	}
 
 	@Override
