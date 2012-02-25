@@ -110,7 +110,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 
 	@Override
 	public double getMaxFitness() {
-		return 0;
+		return 1;
 	}
 
 	
