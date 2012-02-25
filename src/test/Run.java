@@ -11,8 +11,9 @@ public class Run {
 	private int parentProtocol = 2;
 	private int problemId = 3;
 	private int fitnessEvaluationMethod = 1;
-	private double mutateRate = 0.01;
+	private double mutateRate = 0.05;
 	static boolean finished = false;
+	static double BESOVERALLFITNESS = 0;
 
 	public Run() {
 		// init();
@@ -63,7 +64,7 @@ public class Run {
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
-		while (!finished) {
+		while (!finished && i< 5000) {
 			i++;
 			System.out.println("\nGeneration: " + i);
 			if (i == 1) {

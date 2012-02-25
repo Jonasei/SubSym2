@@ -133,7 +133,7 @@ public class PopulationAdults extends Population {
 				bestIndex = i;
 			}
 		}
-		System.out.println(population.get(bestIndex));
+//		System.out.println(population.get(bestIndex));
 		meanFitness = meanFitness / population.size();
 		
 		// normalize
@@ -203,7 +203,17 @@ public class PopulationAdults extends Population {
 	}
 	
 	public void writeToFilePart2(){
+		if(maxFitness > Run.BESOVERALLFITNESS){
+			Run.BESOVERALLFITNESS = maxFitness;
 		
+			try {
+				bf.write(maxFitness+","+population.get(bestIndex)+"\n");
+				bf.flush();			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
 	}
 
 
