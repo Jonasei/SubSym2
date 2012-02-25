@@ -105,14 +105,28 @@ public class SpikeTrainDistanceMetrics {
 	}
 	
 	public double spikeIntervalDistanceMetrics(ArrayList<Double> neuronSpikeTrain, ArrayList<Double> targetSpikeTrain){
+		double fitnessValue = 0;
+		double p = 2;
+		double N = Math.min(phenotypeSpikePositions.size(), targetSpikePositions.size());
+		double sumOfDifferences = 0;
 		
-		return 0;
+		for (int i = 1; i < N; i++) {
+			sumOfDifferences += Math.abs((targetSpikePositions.get(i)- targetSpikePositions.get(i-1)) - (phenotypeSpikePositions.get(i) - phenotypeSpikePositions.get(i-1)));
+			sumOfDifferences = Math.pow(sumOfDifferences, p);
+		}
+		
+		fitnessValue = Math.pow(sumOfDifferences, (1/p));
+		fitnessValue += spikeCountDifferancePenalty;
+		
+		fitnessValue = (1/(N-1)) * fitnessValue;
+		
+		return fitnessValue;
 	}
 	
 	public double waveFormDistanceMetrics(){
 		double fitnessValue = 0;
-		int M = trainingSpikeTrain.size();
-		int p = 2;
+		double M = trainingSpikeTrain.size();
+		double p = 2;
 		
 		double sumOfDifferenses = 0;
 		
