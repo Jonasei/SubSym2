@@ -142,6 +142,8 @@ public class SpikeTrainDistanceMetrics {
 			spikeDifferense = phenotypeSpikePositions.size()- targetSpikePositions.size();
 			minimumSpikes = targetSpikePositions.size();
 		}
+		
+		
 		penelty = (spikeDifferense*phenotypeSpikeTrain.size())/(2*minimumSpikes);
 		
 		return penelty;
@@ -150,13 +152,14 @@ public class SpikeTrainDistanceMetrics {
 	public double getFintesss(int method){
 		double fitness = 0;
 		if(method==1 ){
-			fitness = spikeTimeDistanceMetrics()*-1 + 1;
+			fitness = spikeTimeDistanceMetrics();
 		}else if(method==2){
-			fitness = spikeIntervalDistanceMetrics()*-1 + 1;
+			fitness = spikeIntervalDistanceMetrics();
 		}else{
-			fitness = waveFormDistanceMetrics()*-1 + 1;
+			fitness = waveFormDistanceMetrics();
 		}
 		
+		fitness = 1/(fitness+1);
 		return fitness;
 	}
 	

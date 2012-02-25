@@ -61,6 +61,8 @@ public class PopulationAdults extends Population {
 		if(population.get(0).getProblemId()==2){
 			calculateAvrageStrategyEntropy();
 			writeToFilePartB();
+		}else if(population.get(0).getProblemId()==3){			
+			writeToFilePart2();
 		}else{			
 			writeToFile();
 		}
@@ -198,6 +200,10 @@ public class PopulationAdults extends Population {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+	}
+	
+	public void writeToFilePart2(){
+		
 	}
 
 

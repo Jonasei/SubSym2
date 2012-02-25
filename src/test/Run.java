@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Run {
 
-	private int generationPool = 4;
-	private int adultPool = 2;
+	private int generationPool = 40;
+	private int adultPool = 20;
 	private int bitSize = 50;
-	private int adultProtocol = 3;
+	private int adultProtocol = 2;
 	private int parentProtocol = 2;
 	private int problemId = 3;
 	private int fitnessEvaluationMethod = 1;
@@ -63,7 +63,7 @@ public class Run {
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
-		while (!finished && i < 2) {
+		while (!finished) {
 			i++;
 			System.out.println("\nGeneration: " + i);
 			if (i == 1) {
