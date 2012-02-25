@@ -112,7 +112,7 @@ public class SpikeTrainDistanceMetrics {
 		}
 		
 		fitnessValue = Math.pow(sumOfDifferences, (1/p));
-		fitnessValue += spikeCountDifferancePenalty;
+		fitnessValue += spikeCountDifferancePenalty();
 		
 		fitnessValue = (1/(N-1)) * fitnessValue;
 		
