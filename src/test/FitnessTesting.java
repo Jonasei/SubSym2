@@ -11,21 +11,44 @@ public class FitnessTesting {
 	}
 	
 	public void evaluateFitness(){
-		if(problemId==0||problemId == 1){
-			for (int i = 0; i < childrenPopulation.getPopulationSize(); i++) {
-				childrenPopulation.getPhenotypeAt(i).calculateFitnessEvaluation();
-			}
-		}else if(problemId==2){
-			for (int i = 0; i < childrenPopulation.getPopulationSize(); i++) {
-				ColonelBlottoPhenotype generalOne = (ColonelBlottoPhenotype) childrenPopulation.getPhenotypeAt(i);
-				for (int j = i+1; j < childrenPopulation.getPopulationSize(); j++) {
-					generalOne.battleWith((ColonelBlottoPhenotype) childrenPopulation.getPhenotypeAt(j));
-				}
-				generalOne.calculateFitnessEvaluation();
-			}
-		}
-		else if(problemId == 3){
+		
+		switch (problemId) {
+		case 0:
+			basicFitnessEvaluation();
+			break;
+		case 1:
+			basicFitnessEvaluation();
+			break;
 			
+		case 2:
+			colonelBlottoFitnessEval();
+			break;
+			
+		case 3:
+			spikingNeuronTrainFitnessEval();
+			break;
+		default:
+			break;
 		}
+	}
+	
+	public void basicFitnessEvaluation(){
+		for (int i = 0; i < childrenPopulation.getPopulationSize(); i++) {
+			childrenPopulation.getPhenotypeAt(i).calculateFitnessEvaluation();
+		}
+	}
+	
+	public void colonelBlottoFitnessEval(){
+		for (int i = 0; i < childrenPopulation.getPopulationSize(); i++) {
+			ColonelBlottoPhenotype generalOne = (ColonelBlottoPhenotype) childrenPopulation.getPhenotypeAt(i);
+			for (int j = i+1; j < childrenPopulation.getPopulationSize(); j++) {
+				generalOne.battleWith((ColonelBlottoPhenotype) childrenPopulation.getPhenotypeAt(j));
+			}
+			generalOne.calculateFitnessEvaluation();
+		}
+	}
+	
+	public void spikingNeuronTrainFitnessEval(){
+		
 	}
 }
