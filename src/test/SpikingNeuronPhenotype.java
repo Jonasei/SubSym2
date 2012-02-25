@@ -26,25 +26,33 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 
 		for (int i = 0; i < phenotype.length; i += 10) {
 			double value = 0;
+			
 			value= convertBinaryToDecimal(i);
 			
 			if(i <10){
-				a = 0.001 + (value / 1023 )* (0.2 - 0.001);
+				a = calculateParameter(0.001, 0.2, value);
 			}
 			else if(i <20){
-				b = 0.01 + (value /1023) * (0.3 - 0.01);
+				b = calculateParameter(0.01, 0.3, value);
 			}
 			else if(i <30){
-				c = -80 + (value / 1023) * (-30 + 80);
+				c = calculateParameter(-80, -30, value);
 			}
 			else if(i <40){
-				d = 0.1 + (value / 1023) * (10 - 0.1);
+				d = calculateParameter(0.1, 10, value);
 			}
 			else{
-				k = 0.01 + (value / 1023) * (1.0 - 0.01);
+				k = calculateParameter(0.01, 1.0, value);
 			}
 				
 		}
+	}
+	
+	public double calculateParameter(double lowerBound, double higherBound, double value){
+		double parameter = 0;
+		int maxValue = 1023;
+		parameter = lowerBound + (value / maxValue) * (higherBound - lowerBound);
+		return parameter;
 	}
 	
 	public double convertBinaryToDecimal(int i){
