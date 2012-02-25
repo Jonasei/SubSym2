@@ -76,10 +76,7 @@ public class SpikeTrainDistanceMetrics {
 			if (index == middleIndex && maxValue > activationThreshold){
 				newList.add(i+middleIndex);
 			}
-			
-			
 		}
-		
 		return newList;
 	}
 	
