@@ -15,50 +15,56 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		super(genotype);
 		tau = 10;
 		I = 10;
+		u = 0;
+		v = -60;
 		
 		createNeuronValues();
-		System.out.println(this);
+//		System.out.println(this);
 	}
 
 	public void createNeuronValues() {
-		u = 0;
-		v = -60;
 
 		for (int i = 0; i < phenotype.length; i += 10) {
-			double temp = 0;
-			temp += phenotype[i]* 512;
-			temp += phenotype[i+1]* 256;
-			temp += phenotype[i+2]* 128;
-			temp += phenotype[i+3]* 64;
-			temp += phenotype[i+4]* 32;
-			temp += phenotype[i+5]* 16;
-			temp += phenotype[i+6]* 8;
-			temp += phenotype[i+7]* 4;
-			temp += phenotype[i+8]* 2;
-			temp += phenotype[i+9];
+			double value = 0;
+			value= convertBinaryToDecimal(i);
 			
 			if(i <10){
-				a = 0.001 + (temp / 1023 )* (0.2 - 0.001);
+				a = 0.001 + (value / 1023 )* (0.2 - 0.001);
 			}
 			else if(i <20){
-				b = 0.01 + (temp /1023) * (0.3 - 0.01);
+				b = 0.01 + (value /1023) * (0.3 - 0.01);
 			}
 			else if(i <30){
-				c = -80 + (temp / 1023) * (-30 + 80);
+				c = -80 + (value / 1023) * (-30 + 80);
 			}
 			else if(i <40){
-				d = 0.1 + (temp / 1023) * (10 - 0.1);
+				d = 0.1 + (value / 1023) * (10 - 0.1);
 			}
 			else{
-				k = 0.01 + (temp / 1023) * (1.0 - 0.01);
+				k = 0.01 + (value / 1023) * (1.0 - 0.01);
 			}
 				
 		}
 	}
+	
+	public double convertBinaryToDecimal(int i){
+		double decimalValue = 0;
+		decimalValue += phenotype[i]* 512;
+		decimalValue += phenotype[i+1]* 256;
+		decimalValue += phenotype[i+2]* 128;
+		decimalValue += phenotype[i+3]* 64;
+		decimalValue += phenotype[i+4]* 32;
+		decimalValue += phenotype[i+5]* 16;
+		decimalValue += phenotype[i+6]* 8;
+		decimalValue += phenotype[i+7]* 4;
+		decimalValue += phenotype[i+8]* 2;
+		decimalValue += phenotype[i+9];
+		return decimalValue;
+	}
 
-	public void createSpikeTrain(int numberOfIteations) {
+	public void createSpikeTrain(int numberOfIterations) {
 		spikeTrain = new ArrayList<Double>();
-		for (int i = 0; i < numberOfIteations; i++) {
+		for (int i = 0; i < numberOfIterations; i++) {
 		
 			spikeTrain.add(v);
 			checkThreshold();
