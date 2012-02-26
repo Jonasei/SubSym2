@@ -207,7 +207,7 @@ public class PopulationAdults extends Population {
 			Run.BESOVERALLFITNESS = maxFitness;
 		
 			try {
-				bf.write(maxFitness+","+population.get(bestIndex)+"\n");
+				bf.write(maxFitness+", "+population.get(bestIndex)+"\n");
 				bf.flush();			
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
