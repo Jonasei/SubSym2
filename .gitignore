@@ -31,4 +31,6 @@ _ReSharper*/
 *.class
 *.out
 *.aux
+*.pdf
+*.gz
 *.toc
