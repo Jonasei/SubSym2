@@ -36,3 +36,6 @@ _ReSharper*/
 *.pdf
 *.gz
 *.toc
+*.txt
+
+output.txt
