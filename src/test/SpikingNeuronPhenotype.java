@@ -10,6 +10,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	private double I;
 
 	private ArrayList<Double> spikeTrain;
+	private ArrayList<Integer>spikeTrainPositions;
 
 	public SpikingNeuronPhenotype(Genotype genotype) {
 		super(genotype);
@@ -99,6 +100,11 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		return spikeTrain;
 	}
 	
+	public void setSpikeTrainPositions(ArrayList<Integer>spikeTrainPositions){
+		spikeTrainPositions = new ArrayList<Integer>();
+		this.spikeTrainPositions = (ArrayList<Integer>) spikeTrainPositions.clone();
+	}
+	
 	public void setFitness(double fintessValue){
 		fitnessScore = fintessValue;
 	}
@@ -111,6 +117,16 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 	@Override
 	public double getMaxFitness() {
 		return 1;
+	}
+	
+	public String getSpikes(){
+		String newString ="\nspikeTrainPositions: ";
+		newString += spikeTrainPositions.size();
+		newString +="\n";
+		for (int i = 0; i < spikeTrainPositions.size(); i++) {
+			newString += spikeTrainPositions.get(i)+", ";
+		}
+		return newString;
 	}
 
 	

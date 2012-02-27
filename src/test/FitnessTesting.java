@@ -55,6 +55,7 @@ public class FitnessTesting {
 			SpikingNeuronPhenotype neuron = (SpikingNeuronPhenotype) childrenPopulation.getPhenotypeAt(i);
 			spikeTrainDistanceMetrics.findPhenotypeSpikePosition(neuron.getSpikeTrain());
 			neuron.setFitness(spikeTrainDistanceMetrics.getFintesss(1));
+			neuron.setSpikeTrainPositions(spikeTrainDistanceMetrics.getSpikePosition());
 		}
 	}
 }

@@ -22,10 +22,11 @@ public class SpikeTrainDistanceMetrics {
 		findTargetSpikePosition();
 	}
 	
-	public void findPhenotypeSpikePosition(ArrayList<Double> phenotypeSpikeTrain){
+	public void findPhenotypeSpikePosition(ArrayList<Double> newPhenotypeSpikeTrain){
 		phenotypeSpikePositions = new ArrayList<Integer>();
+		phenotypeSpikeTrain = new ArrayList<Double>();
+		phenotypeSpikeTrain = (ArrayList<Double>) newPhenotypeSpikeTrain.clone();
 		phenotypeSpikePositions = findSpikePositions(phenotypeSpikePositions,phenotypeSpikeTrain);
-		this.phenotypeSpikeTrain = phenotypeSpikeTrain;
 
 	}
 	
@@ -162,6 +163,10 @@ public class SpikeTrainDistanceMetrics {
 		
 		fitness = 1/(fitness+1);
 		return fitness;
+	}
+	
+	public ArrayList<Integer> getSpikePosition(){
+		return phenotypeSpikePositions;
 	}
 	
 	public String toString(){

@@ -133,7 +133,10 @@ public class PopulationAdults extends Population {
 				bestIndex = i;
 			}
 		}
-//		System.out.println(population.get(bestIndex));
+		if(population.get(bestIndex).getProblemId()==3){
+			SpikingNeuronPhenotype phenotype = (SpikingNeuronPhenotype) population.get(bestIndex);
+			System.out.println(phenotype.getSpikes());;
+		}
 		meanFitness = meanFitness / population.size();
 		
 		// normalize
