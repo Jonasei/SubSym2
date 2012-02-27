@@ -125,13 +125,12 @@ public class SpikeTrainDistanceMetrics {
 		double distanceValue = 0;
 		double M = trainingSpikeTrain.size();
 		double p = 2;
-		double sumOfDifferenses = 0;
 		
 		for (int i = 0; i < M; i++) {
-			sumOfDifferenses += Math.abs(trainingSpikeTrain.get(i) - phenotypeSpikeTrain.get(i));
-			sumOfDifferenses = Math.pow(sumOfDifferenses, p);
+			double temp = Math.abs(trainingSpikeTrain.get(i) - phenotypeSpikeTrain.get(i));
+			distanceValue += Math.pow(temp, p);
 		}
-		distanceValue = (1 / M) * Math.pow(sumOfDifferenses, (1/p));
+		distanceValue = (1 / M) * Math.pow(distanceValue, (1/p));
 		
 		return distanceValue;
 	}
