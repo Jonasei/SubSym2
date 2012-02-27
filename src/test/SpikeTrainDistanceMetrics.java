@@ -105,19 +105,20 @@ public class SpikeTrainDistanceMetrics {
 		double distanceValue = 0;
 		double p = 2;
 		double N = Math.min(phenotypeSpikePositions.size(), targetSpikePositions.size());
-		double sumOfDifferences = 0;
-		
+
+		System.out.println("new run");
 		for (int i = 1; i < N; i++) {
-			double temp = 0;
-			temp = Math.abs((targetSpikePositions.get(i)- targetSpikePositions.get(i-1)) - (phenotypeSpikePositions.get(i) - phenotypeSpikePositions.get(i-1)));
-			temp = Math.pow(temp, p);
-			sumOfDifferences = temp;
+			double temp = Math.abs((targetSpikePositions.get(i)- targetSpikePositions.get(i-1)) - (phenotypeSpikePositions.get(i) - phenotypeSpikePositions.get(i-1)));
+			distanceValue += Math.pow(temp, p);
 		}
-		distanceValue = Math.pow(sumOfDifferences, (1/p));
+		
+		System.out.println(distanceValue);
+		distanceValue = Math.pow(distanceValue, (1/p));
+		System.out.println(distanceValue);
 		distanceValue += spikeCountDifferancePenalty();
-		
+		System.out.println(distanceValue);
 		distanceValue = (1/(N-1)) * distanceValue;
-		
+		System.out.println(distanceValue);
 		return distanceValue;
 	}
 	
