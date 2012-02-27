@@ -65,7 +65,7 @@ public class Run {
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
-		while (!finished && i< 200) {
+		while (!finished && i< 2000) {
 
 			i++;
 			System.out.println("\nGeneration: " + i);
