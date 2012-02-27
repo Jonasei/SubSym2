@@ -1,5 +1,7 @@
 package test;
 
+import java.util.ArrayList;
+
 public class FitnessTesting {
 
 	private PopulationChildren childrenPopulation;
@@ -55,6 +57,8 @@ public class FitnessTesting {
 			SpikingNeuronPhenotype neuron = (SpikingNeuronPhenotype) childrenPopulation.getPhenotypeAt(i);
 			spikeTrainDistanceMetrics.findPhenotypeSpikePosition(neuron.getSpikeTrain());
 			neuron.setFitness(spikeTrainDistanceMetrics.getFintesss(1));
+			ArrayList<Integer> spikeTrainPositions = spikeTrainDistanceMetrics.getSpikePosition();
+			neuron.setSpikeTrainPositions(spikeTrainPositions);
 		}
 	}
 }
