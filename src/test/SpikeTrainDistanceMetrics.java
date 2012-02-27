@@ -108,10 +108,11 @@ public class SpikeTrainDistanceMetrics {
 		double sumOfDifferences = 0;
 		
 		for (int i = 1; i < N; i++) {
-			sumOfDifferences += Math.abs((targetSpikePositions.get(i)- targetSpikePositions.get(i-1)) - (phenotypeSpikePositions.get(i) - phenotypeSpikePositions.get(i-1)));
-			sumOfDifferences = Math.pow(sumOfDifferences, p);
+			double temp = 0;
+			temp = Math.abs((targetSpikePositions.get(i)- targetSpikePositions.get(i-1)) - (phenotypeSpikePositions.get(i) - phenotypeSpikePositions.get(i-1)));
+			temp = Math.pow(temp, p);
+			sumOfDifferences = temp;
 		}
-		
 		distanceValue = Math.pow(sumOfDifferences, (1/p));
 		distanceValue += spikeCountDifferancePenalty();
 		
