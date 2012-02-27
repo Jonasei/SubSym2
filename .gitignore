@@ -29,3 +29,8 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.class
+*.out
+*.aux
+*.pdf
+*.gz
+*.toc
