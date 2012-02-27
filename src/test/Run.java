@@ -13,7 +13,8 @@ public class Run {
 	private int fitnessEvaluationMethod = 2;
 	private double mutateRate = 0.05;
 	static boolean finished = false;
-	static double BESOVERALLFITNESS = 0;
+	static double BESTOVERALLFITNESS = 0;
+	
 
 	public Run() {
 		// init();
@@ -65,6 +66,7 @@ public class Run {
 
 		int i = 0;
 		while (!finished && i< 200) {
+
 			i++;
 			System.out.println("\nGeneration: " + i);
 			if (i == 1) {

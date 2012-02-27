@@ -206,8 +206,8 @@ public class PopulationAdults extends Population {
 	}
 	
 	public void writeToFilePart2(){
-		if(maxFitness > Run.BESOVERALLFITNESS){
-			Run.BESOVERALLFITNESS = maxFitness;
+		if(maxFitness > Run.BESTOVERALLFITNESS){
+			Run.BESTOVERALLFITNESS = maxFitness;
 		
 			try {
 				bf.write(maxFitness+", "+population.get(bestIndex)+"\n");

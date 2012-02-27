@@ -20,7 +20,6 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		v = -60;
 		
 		spikeTrainPositions = new ArrayList<Integer>();
-		
 		createNeuronValues();
 		createSpikeTrain(1001);
 	}
