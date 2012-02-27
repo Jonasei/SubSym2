@@ -87,7 +87,7 @@ public class SpikeTrainDistanceMetrics {
 	
 	
 	public double spikeTimeDistanceMetrics(){
-		int p = 2;
+		double p = 2;
 		double distanceValue = 0;
 		double minimumSpikes = Math.min(phenotypeSpikePositions.size(), targetSpikePositions.size());
 		
@@ -95,7 +95,7 @@ public class SpikeTrainDistanceMetrics {
 			double temp = Math.abs(phenotypeSpikePositions.get(i)-targetSpikePositions.get(i));
 			distanceValue += Math.pow(temp, 2);
 		}
-		distanceValue = Math.pow(distanceValue, 1/p);
+		distanceValue = Math.pow(distanceValue, (1/p));
 		distanceValue += spikeCountDifferancePenalty();
 		distanceValue = (1/minimumSpikes)*distanceValue;
 		return distanceValue;
