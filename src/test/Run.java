@@ -10,7 +10,7 @@ public class Run {
 	private int adultProtocol = 3;
 	private int parentProtocol = 2;
 	private int problemId = 3;
-	private int fitnessEvaluationMethod = 2;
+	private int fitnessEvaluationMethod = 1;
 	private double mutateRate = 0.05;
 	static boolean finished = false;
 	static double BESTOVERALLFITNESS = 0;
@@ -65,7 +65,7 @@ public class Run {
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
-		while (!finished && i< 200) {
+		while (!finished && i< 2000) {
 
 			i++;
 			System.out.println("\nGeneration: " + i);
