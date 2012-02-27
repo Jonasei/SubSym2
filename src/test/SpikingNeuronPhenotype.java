@@ -19,6 +19,8 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		u = 0;
 		v = -60;
 		
+		spikeTrainPositions = new ArrayList<Integer>();
+		
 		createNeuronValues();
 		createSpikeTrain(1000);
 	}
@@ -77,8 +79,8 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		
 			spikeTrain.add(v);
 			checkThreshold();
-			v = (1/tau)*(k*Math.pow(v, 2)+5*v+140-u+I);
-			u = (a/tau)*(b*v-u);
+			v += (1/tau)*(k*Math.pow(v, 2)+5*v+140-u+I);
+			u += (a/tau)*(b*v-u);
 		
 		}
 		
@@ -100,8 +102,9 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		return spikeTrain;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void setSpikeTrainPositions(ArrayList<Integer>spikeTrainPositions){
-		spikeTrainPositions = new ArrayList<Integer>();
+		this.spikeTrainPositions.clear();
 		this.spikeTrainPositions = (ArrayList<Integer>) spikeTrainPositions.clone();
 	}
 	

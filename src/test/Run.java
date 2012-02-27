@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Run {
 
-	private int generationPool = 500;
-	private int adultPool = 250;
+	private int generationPool = 10;
+	private int adultPool = 5;
 	private int bitSize = 50;
 	private int adultProtocol = 3;
 	private int parentProtocol = 2;
@@ -64,7 +64,7 @@ public class Run {
 		Reproduction reproduction = new Reproduction(populationParent);
 
 		int i = 0;
-		while (!finished && i< 5000) {
+		while (!finished && i< 2000) {
 			i++;
 			System.out.println("\nGeneration: " + i);
 			if (i == 1) {

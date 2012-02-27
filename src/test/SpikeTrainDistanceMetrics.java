@@ -17,14 +17,16 @@ public class SpikeTrainDistanceMetrics {
 	public SpikeTrainDistanceMetrics(){
 		activationThreshold = 0;
 		kTimeStep = 5;
-		
-		readTrainingData(1);
+		phenotypeSpikePositions = new ArrayList<Integer>();
+		phenotypeSpikeTrain = new ArrayList<Double>();
+		readTrainingData(2);
 		findTargetSpikePosition();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void findPhenotypeSpikePosition(ArrayList<Double> newPhenotypeSpikeTrain){
-		phenotypeSpikePositions = new ArrayList<Integer>();
-		phenotypeSpikeTrain = new ArrayList<Double>();
+		phenotypeSpikePositions.clear();
+		phenotypeSpikeTrain.clear();
 		phenotypeSpikeTrain = (ArrayList<Double>) newPhenotypeSpikeTrain.clone();
 		phenotypeSpikePositions = findSpikePositions(phenotypeSpikePositions,phenotypeSpikeTrain);
 
