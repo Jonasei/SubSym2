@@ -19,8 +19,9 @@ public class SpikeTrainDistanceMetrics {
 		kTimeStep = 5;
 		phenotypeSpikePositions = new ArrayList<Integer>();
 		phenotypeSpikeTrain = new ArrayList<Double>();
-		readTrainingData(2);
+		readTrainingData(1);
 		findTargetSpikePosition();
+		printTargetSpikesPosition();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -123,7 +124,6 @@ public class SpikeTrainDistanceMetrics {
 		double distanceValue = 0;
 		double M = trainingSpikeTrain.size();
 		double p = 2;
-		
 		double sumOfDifferenses = 0;
 		
 		for (int i = 0; i < M; i++) {
@@ -169,6 +169,15 @@ public class SpikeTrainDistanceMetrics {
 	
 	public ArrayList<Integer> getSpikePosition(){
 		return phenotypeSpikePositions;
+	}
+	
+	public void printTargetSpikesPosition(){
+		String newString ="";
+		newString +="\n\nTargetspikeTrainPositions\n";
+		for (int i = 0; i < targetSpikePositions.size(); i++) {
+			newString += targetSpikePositions.get(i)+", ";
+		}
+		System.out.println(newString);
 	}
 	
 	public String toString(){
