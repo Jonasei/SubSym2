@@ -17,7 +17,6 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		I = 10;
 		u = 0;
 		v = -60;
-		
 		createNeuronValues();
 		createSpikeTrain(1000);
 	}
@@ -76,8 +75,8 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		
 			spikeTrain.add(v);
 			checkThreshold();
-			v = (1/tau)*(k*Math.pow(v, 2)+5*v+140-u+I);
-			u = (a/tau)*(b*v-u);
+			v += (1/tau)*(k*Math.pow(v, 2)+5*v+140-u+I);
+			u += (a/tau)*(b*v-u);
 		
 		}
 		

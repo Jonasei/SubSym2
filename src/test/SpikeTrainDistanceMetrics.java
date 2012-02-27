@@ -133,7 +133,7 @@ public class SpikeTrainDistanceMetrics {
 	}
 	
 	public double spikeCountDifferancePenalty(){
-		double penelty = 0;
+		double penalty = 0;
 		double spikeDifferense = 0;
 		double minimumSpikes = 0;
 		if (phenotypeSpikePositions.size()<targetSpikePositions.size()){
@@ -145,9 +145,9 @@ public class SpikeTrainDistanceMetrics {
 		}
 		
 		
-		penelty = (spikeDifferense*phenotypeSpikeTrain.size())/(2*minimumSpikes);
+		penalty = (spikeDifferense*phenotypeSpikeTrain.size())/(2*minimumSpikes);
 		
-		return penelty;
+		return penalty;
 	}
 	
 	public double getFintesss(int method){
