@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Run {
 
-	private int generationPool = 40;
-	private int adultPool = 20;
+	private int generationPool = 500;
+	private int adultPool = 250;
 	private int bitSize = 50;
-	private int adultProtocol = 2;
+	private int adultProtocol = 3;
 	private int parentProtocol = 2;
 	private int problemId = 3;
-	private int fitnessEvaluationMethod = 1;
-	private double mutateRate = 0.1;
+	private int fitnessEvaluationMethod = 2;
+	private double mutateRate = 0.05;
 	static boolean finished = false;
 	static double BESOVERALLFITNESS = 0;
 
