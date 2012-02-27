@@ -19,7 +19,7 @@ public class SpikeTrainDistanceMetrics {
 		kTimeStep = 5;
 		phenotypeSpikePositions = new ArrayList<Integer>();
 		phenotypeSpikeTrain = new ArrayList<Double>();
-		readTrainingData(2);
+		readTrainingData(4);
 		findTargetSpikePosition();
 	}
 	
