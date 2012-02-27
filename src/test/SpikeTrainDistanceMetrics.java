@@ -26,6 +26,7 @@ public class SpikeTrainDistanceMetrics {
 		phenotypeSpikePositions = new ArrayList<Integer>();
 		phenotypeSpikePositions = findSpikePositions(phenotypeSpikePositions,phenotypeSpikeTrain);
 		this.phenotypeSpikeTrain = phenotypeSpikeTrain;
+
 	}
 	
 	private void readTrainingData(int trainingDataSet){
