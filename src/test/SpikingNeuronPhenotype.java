@@ -21,7 +21,7 @@ public class SpikingNeuronPhenotype extends BasicPhenotype {
 		
 		spikeTrainPositions = new ArrayList<Integer>();
 		createNeuronValues();
-		createSpikeTrain(1000);
+		createSpikeTrain(1001);
 	}
 
 	public void createNeuronValues() {
