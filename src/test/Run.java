@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Run {
 
-	private int generationPool = 20;
-	private int adultPool = 10;
+	private int generationPool = 200;
+	private int adultPool = 100;
 	private int bitSize = 50;
 	private int adultProtocol = 3;
 	private int parentProtocol = 2;
