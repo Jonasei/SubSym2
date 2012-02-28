@@ -10,11 +10,11 @@ public class FitnessTesting {
 	private int evaluationMethod;
 
 	
-	public FitnessTesting(PopulationChildren childrenPopulation,int problemId,int evaluationMethod){
+	public FitnessTesting(PopulationChildren childrenPopulation,int problemId,int evaluationMethod,int trainingDataset){
 		this.childrenPopulation = childrenPopulation;
 		this.problemId = problemId;
 		this.evaluationMethod = evaluationMethod;
-		spikeTrainDistanceMetrics = new SpikeTrainDistanceMetrics();
+		spikeTrainDistanceMetrics = new SpikeTrainDistanceMetrics(trainingDataset);
 	}
 	
 	public void evaluateFitness(){	

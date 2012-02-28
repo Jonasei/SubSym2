@@ -14,12 +14,12 @@ public class SpikeTrainDistanceMetrics {
 	private ArrayList<Double> trainingSpikeTrain;
 	private ArrayList<Double> phenotypeSpikeTrain;
 	
-	public SpikeTrainDistanceMetrics(){
+	public SpikeTrainDistanceMetrics(int targetDataset){
 		activationThreshold = 0;
 		kTimeStep = 5;
 		phenotypeSpikePositions = new ArrayList<Integer>();
 		phenotypeSpikeTrain = new ArrayList<Double>();
-		readTrainingData(1);
+		readTrainingData(targetDataset);
 		findTargetSpikePosition();
 		printTargetSpikesPosition();
 	}
