@@ -5,6 +5,7 @@ Thumbs.db
 *.txt
 output.txt
 *.stackdump
+*.dvi
 *.obj
 *.exe
 *.pdb
