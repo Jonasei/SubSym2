@@ -210,7 +210,7 @@ public class PopulationAdults extends Population {
 			Run.BESTOVERALLFITNESS = maxFitness;
 		
 			try {
-				bf.write(maxFitness+", "+population.get(bestIndex)+"\n");
+				bf.write(Run.getGenerationNumber()+"," +maxFitness+", "+population.get(bestIndex)+"\n");
 				bf.flush();			
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

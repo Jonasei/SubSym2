@@ -4,18 +4,47 @@ import java.util.Scanner;
 
 public class Run {
 
+	public static int ONEMAX = 0;
+	public static int ADVANCEDONEMAX = 1;
+	public static int COLONELBLOTTO = 2;
+	public static int NEURONSPIKETRAIN = 3;
+	
+	public static int RANDOM = 0;
+	public static int OVERPRODUCTION = 1;
+	public static int FULLGENERATIONALREPLACEMENT = 2;
+	public static int GENERATIONALMIXING = 3;
+	
+	public static int FITNESSPROPORTIONATE = 1;
+	public static int SIGMASCALING = 2;
+	public static int TOURNAMENTSELECTION = 3;
+	public static int STOCHASTICUNIFORMSELECTION = 4;
+	
+	public static int SPIKEDISTANCEMETRIC = 1;
+	public static int SPIKEINTERVALDISTANCEMETRIC = 2;
+	public static int WAVEFORMDISTANCEMETRIC = 3;
+	
+	
+	
+	
 	private int generationPool = 200;
-	private int adultPool = 100;
-
-	private int bitSize = 50;
-	private int adultProtocol = 3;
-	private int parentProtocol = 2;
-	private int problemId = 3;
-	private int fitnessEvaluationMethod = 2;
+	private int adultPool = 40;
+	private int fitnessEvaluationMethod = SPIKEDISTANCEMETRIC;
+	private int adultProtocol = GENERATIONALMIXING;
+	private int parentProtocol = SIGMASCALING;
 	private double mutateRate = 0.05;
+
+	
+	
+	private int bitSize = 50;
+	private int problemId = NEURONSPIKETRAIN;
 	static boolean finished = false;
 	static double BESTOVERALLFITNESS = 0;
+	private static int generationNumber = 0;
 	
+
+	public static int getGenerationNumber() {
+		return generationNumber;
+	}
 
 	public Run() {
 		// init();
@@ -65,12 +94,11 @@ public class Run {
 		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId,fitnessEvaluationMethod);
 		Reproduction reproduction = new Reproduction(populationParent);
 
-		int i = 0;
-		while (!finished && i< 2000) {
+		while (!finished && generationNumber< 1000) {
 
-			i++;
-			System.out.println("\nGeneration: " + i);
-			if (i == 1) {
+			generationNumber++;
+			System.out.println("\nGeneration: " + generationNumber);
+			if (generationNumber == 1) {
 				development.createFirstGeneration();
 			} else {
 				development.develop(reproduction.getGenotypes());
@@ -87,7 +115,7 @@ public class Run {
 			System.out.println(populationAdults);
 
 		}
-		System.out.println("\nDone at generation: " + i);
+		System.out.println("\nDone at generation: " + generationNumber);
 	}
 
 	/**
