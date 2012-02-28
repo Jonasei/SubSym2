@@ -31,6 +31,7 @@ public class Run {
 	private int fitnessEvaluationMethod = WAVEFORMDISTANCEMETRIC;
 	private int adultProtocol = RANDOM;
 	private int parentProtocol = SIGMASCALING;
+	private int targetDataset = 1;
 	private double mutateRate = 0.05;
 
 	
@@ -40,6 +41,7 @@ public class Run {
 	static boolean finished = false;
 	static double BESTOVERALLFITNESS = 0;
 	private static int generationNumber = 0;
+	private int numberOfGenerations = 1000;
 	
 
 	public static int getGenerationNumber() {
@@ -47,40 +49,20 @@ public class Run {
 	}
 
 	public Run() {
-		// init();
+		init();
 		simulateEA();
 	}
 
 	public void init() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome");
-		System.out.println("Enter problem id\nOneMax = 0\nAdvencedOneMax = 1\nColonelBlotto = 2");
-		problemId = sc.nextInt();
-		if (problemId == 2) {
-			System.out.println("Enter bitSize, have to be dividable by 4:");
-			bitSize = sc.nextInt();
-			while (bitSize % 4 != 0) {
-				System.out.println("Enter bitSize, have to be dividable by 4:");
-				bitSize = sc.nextInt();
-			}
-		} else {
-			System.out.println("Enter bitSize:");
-			bitSize = sc.nextInt();
-		}
-		System.out.println("Enter childern size, have to be dividable by 2:");
-		generationPool = sc.nextInt();
-		while (generationPool % 2 != 0) {
-			System.out.println("Enter childern size, have to be dividable by 2:");
-			generationPool = sc.nextInt();
-		}
-		System.out.println("Enter adult size:");
-		adultPool = sc.nextInt();
-		System.out.println("Enter adult protocol\nRandom = 0\nOver production = 1\nFull generational replacement = 2\nGenerational mixing = 3");
-		adultProtocol = sc.nextInt();
-		System.out.println("Enter parent protocol\nRandom = 0\nFitness proportionate = 1\nSigma-scaling = 2\nTournament selection = 3\nStochastic uniform selection = 4");
-		parentProtocol = sc.nextInt();
-		System.out.println("Enter mutate rate, eks 0,01:");
-		mutateRate = sc.nextDouble();
+		System.out.println("Enter training dataset (1-4)");
+		targetDataset = sc.nextInt();
+		System.out.println("Enter  fitness evaluation method\nSpike distance metric = 1\nSpike interval distance metric = 2\nWaveform distance metric = 3");
+		fitnessEvaluationMethod = sc.nextInt();
+		System.out.println("Enter generations to run");
+		numberOfGenerations = sc.nextInt();
+
 	}
 
 	public void simulateEA() {
@@ -91,10 +73,10 @@ public class Run {
 		PopulationParent populationParent = new PopulationParent(generationPool);
 		// Declare helper classes
 		Development development = new Development(populationChildren, generationPool, bitSize, mutateRate, problemId);
-		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId,fitnessEvaluationMethod);
+		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId,fitnessEvaluationMethod,targetDataset);
 		Reproduction reproduction = new Reproduction(populationParent);
 
-		while (!finished && generationNumber< 1000) {
+		while (!finished && generationNumber< numberOfGenerations) {
 
 			generationNumber++;
 			System.out.println("\nGeneration: " + generationNumber);
