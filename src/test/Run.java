@@ -4,26 +4,26 @@ import java.util.Scanner;
 
 public class Run {
 
-	public static int ONEMAX = 0;
-	public static int ADVANCEDONEMAX = 1;
-	public static int COLONELBLOTTO = 2;
-	public static int NEURONSPIKETRAIN = 3;
+	public static final int ONEMAX = 0;
+	public static final int ADVANCEDONEMAX = 1;
+	public static final int COLONELBLOTTO = 2;
+	public static final int NEURONSPIKETRAIN = 3;
 	
-	public static int RANDOM = 0;
-	public static int OVERPRODUCTION = 1;
-	public static int FULLGENERATIONALREPLACEMENT = 2;
-	public static int GENERATIONALMIXING = 3;
+	public static final int RANDOM = 0;
+	public static final int OVERPRODUCTION = 1;
+	public static final int FULLGENERATIONALREPLACEMENT = 2;
+	public static final int GENERATIONALMIXING = 3;
 	
-	public static int FITNESSPROPORTIONATE = 1;
-	public static int SIGMASCALING = 2;
-	public static int TOURNAMENTSELECTION = 3;
-	public static int STOCHASTICUNIFORMSELECTION = 4;
+	public static final int FITNESSPROPORTIONATE = 1;
+	public static final int SIGMASCALING = 2;
+	public static final int TOURNAMENTSELECTION = 3;
+	public static final int STOCHASTICUNIFORMSELECTION = 4;
 	
-	public static int SPIKEDISTANCEMETRIC = 1;
-	public static int SPIKEINTERVALDISTANCEMETRIC = 2;
-	public static int WAVEFORMDISTANCEMETRIC = 3;
+	public static final int SPIKEDISTANCEMETRIC = 1;
+	public static final int SPIKEINTERVALDISTANCEMETRIC = 2;
+	public static final int WAVEFORMDISTANCEMETRIC = 3;
 	
-	
+	public static int generationNumber = 0;
 	
 	
 	private int generationPool = 200;
@@ -40,13 +40,9 @@ public class Run {
 	private int problemId = NEURONSPIKETRAIN;
 	static boolean finished = false;
 	static double BESTOVERALLFITNESS = 0;
-	private static int generationNumber = 0;
+	
 	private int numberOfGenerations = 1000;
 	
-
-	public static int getGenerationNumber() {
-		return generationNumber;
-	}
 
 	public Run() {
 		init();
