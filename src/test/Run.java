@@ -28,8 +28,8 @@ public class Run {
 	
 	private int generationPool = 200;
 	private int adultPool = 40;
-	private int fitnessEvaluationMethod = SPIKEDISTANCEMETRIC;
-	private int adultProtocol = GENERATIONALMIXING;
+	private int fitnessEvaluationMethod = WAVEFORMDISTANCEMETRIC;
+	private int adultProtocol = RANDOM;
 	private int parentProtocol = SIGMASCALING;
 	private double mutateRate = 0.05;
 
