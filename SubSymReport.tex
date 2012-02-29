@@ -209,7 +209,8 @@ Table \ref{table} shows the fitness value and the parameters used to make each o
 \section{Discussion}
 
 \subsection{Mapping}
-We have implemented it as a 1-1 mapping between the genotype and phenotype. This is because each 10 bit in the genotypes gives a unique value in the phenotype. No form of normalization or other manipulation is done. As a result any simple mutation or crossover with a different genotype gives a new unique phenotype.
+We have implemented it as a developmental 1-1 mapping between the genotype and phenotype. This is because each 10 bit in the genotypes gives a unique value in the phenotype that acts as a parameter. These are used to create 1001 values that are used for fitness evaluation. No form of normalization or other manipulation is done. As a result any simple mutation or crossover with a different genotype gives a new unique phenotype. 
+
 
 \subsection{Practical Implications}
 The tool tells us about how the neuron works. Which parameters effect it and how it responds to different doses of these. When will it fire spikes and so on. 
