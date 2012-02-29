@@ -4,34 +4,33 @@ import java.util.Scanner;
 
 public class Run {
 
-	public static final int ONEMAX = 0;
-	public static final int ADVANCEDONEMAX = 1;
-	public static final int COLONELBLOTTO = 2;
-	public static final int NEURONSPIKETRAIN = 3;
+	public static int ONEMAX = 0;
+	public static int ADVANCEDONEMAX = 1;
+	public static int COLONELBLOTTO = 2;
+	public static int NEURONSPIKETRAIN = 3;
 	
-	public static final int RANDOM = 0;
-	public static final int OVERPRODUCTION = 1;
-	public static final int FULLGENERATIONALREPLACEMENT = 2;
-	public static final int GENERATIONALMIXING = 3;
+	public static int RANDOM = 0;
+	public static int OVERPRODUCTION = 1;
+	public static int FULLGENERATIONALREPLACEMENT = 2;
+	public static int GENERATIONALMIXING = 3;
 	
-	public static final int FITNESSPROPORTIONATE = 1;
-	public static final int SIGMASCALING = 2;
-	public static final int TOURNAMENTSELECTION = 3;
-	public static final int STOCHASTICUNIFORMSELECTION = 4;
+	public static int FITNESSPROPORTIONATE = 1;
+	public static int SIGMASCALING = 2;
+	public static int TOURNAMENTSELECTION = 3;
+	public static int STOCHASTICUNIFORMSELECTION = 4;
 	
-	public static final int SPIKEDISTANCEMETRIC = 1;
-	public static final int SPIKEINTERVALDISTANCEMETRIC = 2;
-	public static final int WAVEFORMDISTANCEMETRIC = 3;
+	public static int SPIKEDISTANCEMETRIC = 1;
+	public static int SPIKEINTERVALDISTANCEMETRIC = 2;
+	public static int WAVEFORMDISTANCEMETRIC = 3;
 	
-	public static int generationNumber = 0;
+	
 	
 	
 	private int generationPool = 200;
 	private int adultPool = 40;
-	private int fitnessEvaluationMethod = WAVEFORMDISTANCEMETRIC;
+	private int fitnessEvaluationMethod = SPIKEINTERVALDISTANCEMETRIC;
 	private int adultProtocol = RANDOM;
 	private int parentProtocol = SIGMASCALING;
-	private int targetDataset = 1;
 	private double mutateRate = 0.05;
 
 	
@@ -40,25 +39,48 @@ public class Run {
 	private int problemId = NEURONSPIKETRAIN;
 	static boolean finished = false;
 	static double BESTOVERALLFITNESS = 0;
-	
-	private int numberOfGenerations = 1000;
+	private static int generationNumber = 0;
 	
 
+	public static int getGenerationNumber() {
+		return generationNumber;
+	}
+
 	public Run() {
-		init();
+		// init();
 		simulateEA();
 	}
 
 	public void init() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome");
-		System.out.println("Enter training dataset (1-4)");
-		targetDataset = sc.nextInt();
-		System.out.println("Enter  fitness evaluation method\nSpike distance metric = 1\nSpike interval distance metric = 2\nWaveform distance metric = 3");
-		fitnessEvaluationMethod = sc.nextInt();
-		System.out.println("Enter generations to run");
-		numberOfGenerations = sc.nextInt();
-
+		System.out.println("Enter problem id\nOneMax = 0\nAdvencedOneMax = 1\nColonelBlotto = 2");
+		problemId = sc.nextInt();
+		if (problemId == 2) {
+			System.out.println("Enter bitSize, have to be dividable by 4:");
+			bitSize = sc.nextInt();
+			while (bitSize % 4 != 0) {
+				System.out.println("Enter bitSize, have to be dividable by 4:");
+				bitSize = sc.nextInt();
+			}
+		} else {
+			System.out.println("Enter bitSize:");
+			bitSize = sc.nextInt();
+		}
+		System.out.println("Enter childern size, have to be dividable by 2:");
+		generationPool = sc.nextInt();
+		while (generationPool % 2 != 0) {
+			System.out.println("Enter childern size, have to be dividable by 2:");
+			generationPool = sc.nextInt();
+		}
+		System.out.println("Enter adult size:");
+		adultPool = sc.nextInt();
+		System.out.println("Enter adult protocol\nRandom = 0\nOver production = 1\nFull generational replacement = 2\nGenerational mixing = 3");
+		adultProtocol = sc.nextInt();
+		System.out.println("Enter parent protocol\nRandom = 0\nFitness proportionate = 1\nSigma-scaling = 2\nTournament selection = 3\nStochastic uniform selection = 4");
+		parentProtocol = sc.nextInt();
+		System.out.println("Enter mutate rate, eks 0,01:");
+		mutateRate = sc.nextDouble();
 	}
 
 	public void simulateEA() {
@@ -69,10 +91,10 @@ public class Run {
 		PopulationParent populationParent = new PopulationParent(generationPool);
 		// Declare helper classes
 		Development development = new Development(populationChildren, generationPool, bitSize, mutateRate, problemId);
-		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId,fitnessEvaluationMethod,targetDataset);
+		FitnessTesting fitnessTesting = new FitnessTesting(populationChildren, problemId,fitnessEvaluationMethod);
 		Reproduction reproduction = new Reproduction(populationParent);
 
-		while (!finished && generationNumber< numberOfGenerations) {
+		while (!finished && generationNumber< 1000) {
 
 			generationNumber++;
 			System.out.println("\nGeneration: " + generationNumber);
